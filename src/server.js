@@ -12,10 +12,12 @@ const loggerMiddleware = morgan("dev");
 app.set("view engine", "pug");
 app.set("views", process.cwd() + "/src/views");
 app.use(loggerMiddleware);
+app.use(express.urlencoded({ extended: true }));
 app.use("/", globalRouter);
 app.use("/users", userRouter);
 app.use("/videos", videoRouter);
 
-const handleListening = () => console.log(`Server listening on port http://localhost:${PORT}`);
+const handleListening = () =>
+  console.log(`Server listening on port http://localhost:${PORT}`);
 
 app.listen(PORT, handleListening);
